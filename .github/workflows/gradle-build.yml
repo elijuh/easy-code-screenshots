@@ -1,8 +1,9 @@
 name: Gradle Package
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -27,3 +28,9 @@ jobs:
 
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Upload Artifact
+    - uses: actions/upload-artifact@v3
+      with:
+        name: easy-code-screenshots
+        path: build/libs/*.jar
